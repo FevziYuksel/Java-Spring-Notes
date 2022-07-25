@@ -23,11 +23,11 @@ public enum CurrencyInt {
 
      //Int to Enum and Enum to Int
 
-     public static Currency intToEnum(int number){
+     public static CurrencyInt intToEnum(int number){
      //If enums are ordered
-     Currency currency = null;
+     CurrencyInt currency = null;
      try{
-     currency = Currency.values()[number];
+     currency = CurrencyInt.values()[number];
      }
      catch(Exception e){
       throw new IllegalArgumentException("Currency is not present in data");
@@ -35,18 +35,18 @@ public enum CurrencyInt {
      return currency;
 
      }
-    public static int EnumToInt(Currency currency){
+    public static int EnumToInt(CurrencyInt currency){
         //If enums are ordered
         return currency.ordinal();
     }
 
-    public static Currency chooseCurrency(int number){
+    public static CurrencyInt chooseCurrency(int number){
 
         return switch (number) {
-            case 1-> Currency.DOLLAR;
-            case 2 -> Currency.EURO;
-            case 3 -> Currency.TURKISH_LIRA;
-            case 4 -> Currency.POUND;
+            case 1-> CurrencyInt.DOLLAR;
+            case 2 -> CurrencyInt.EURO;
+            case 3 -> CurrencyInt.TURKISH_LIRA;
+            case 4 -> CurrencyInt.POUND;
             default -> throw new IllegalArgumentException("Currency is not present in data");
         };
     }
