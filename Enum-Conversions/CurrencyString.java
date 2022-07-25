@@ -14,10 +14,10 @@ public enum CurrencyString {
      * Change fields to String ??
      * */
 
-    DOLLAR("dollar"),
-    EURO("euro"),
-    TURKISH_LIRA("lira"),
-    POUND("pound");
+    DOLLAR("USD"),
+    EURO("EUR"),
+    TURKISH_LIRA("TRY"),
+    POUND("GBP");
 
     Currency(String name) {}
 
@@ -27,17 +27,17 @@ public enum CurrencyString {
 
       // Enum to String and String to Enum
 
-    public static Currency fromText1(String text) {
+    public static CurrencyString fromText1(String text) {
         //Text must be exactly same
-        Currency currency = null;
+        CurrencyString currency = null;
         try{
-            currency = Currency.valueOf(text.toUpperCase());
+            currency = CurrencyString.valueOf(text.toUpperCase());
         }catch (Exception e){
             throw new IllegalArgumentException("Currency is not present in data");
         }
         return currency;
     }
-    public static String fromText2(Currency currency) {
+    public static String fromText2(CurrencyString currency) {
 
         String text ;
         try{
@@ -51,9 +51,9 @@ public enum CurrencyString {
     
    
     @JsonCreator
-    public static Currency fromText3(String text) {
+    public static CurrencyString fromText3(String text) {
         //Text must be exactly same
-        for (Currency c : Currency.values()) {
+        for (CurrencyString c : CurrencyString.values()) {
             if (c.getText().equalsIgnoreCase(text)) {
                 return c;
             }
@@ -61,9 +61,9 @@ public enum CurrencyString {
         throw new IllegalArgumentException("");
     }
     @JsonCreator
-    public static Currency fromText2(String text) {
+    public static CurrencyString fromText2(String text) {
 
-        for (Currency c : Currency.values()) {
+        for (CurrencyString c : CurrencyString.values()) {
             if (text.toUpperCase().contains(c.getText())) {
                 return c;
             }
@@ -71,9 +71,9 @@ public enum CurrencyString {
         throw new IllegalArgumentException("");
     }
     @JsonCreator
-    public static Currency fromText4(String text) {
+    public static CurrencyString fromText4(String text) {
 
-        return Arrays.stream(Currency.values())
+        return Arrays.stream(CurrencyString.values())
                 .filter(name -> text.toUpperCase().contains(name.name()))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("Currency is not present in data"));
 
